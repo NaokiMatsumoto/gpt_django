@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+レストラン一覧
+{% endblock %}
+
+{% block content %}
+<h1 class="my-4">レストラン一覧</h1>
+<ul class="list-group">
+    {% for restaurant in restaurants %}
+        <li class="list-group-item">
+            {{ restaurant.name }}
+            <!-- 詳細画面へのリンク -->
+            <a href="{% url 'restaurant-detail-web' restaurant.id %}" class="btn btn-primary float-right">詳細</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block pagination %}
+<div class="my-4">
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">前へ</a></li>
+            {% endif %}
+            
+            <!-- 現在のページ番号 -->
+            <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">次へ</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+<!-- city_restaurants.html -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>市のレストラン一覧</title>
+</head>
+<body>
+    <h1>市のレストラン一覧</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>{{ restaurant.name }} - {{ restaurant.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- ページネーション -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if restaurants.has_previous %}
+                <a href="?page={{ restaurants.previous_page_number }}">前へ</a>
+            {% endif %}
+            
+            <span class="current">
+                ページ {{ restaurants.number }} / {{ restaurants.paginator.num_pages }}.
+            </span>
+
+            {% if restaurants.has_next %}
+                <a href="?page={{ restaurants.next_page_number }}">次へ</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

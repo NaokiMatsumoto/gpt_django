@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ restaurant.name }}
+{% endblock %}
+
+{% block content %}
+<div class="card my-4">
+    <div class="card-body">
+        <h1 class="card-title">{{ restaurant.name }}</h1>
+        <h6 class="card-subtitle mb-2 text-muted">{{ restaurant.city.prefecture }}: {{ restaurant.city.name }}</h6>
+        <p class="card-text">{{ restaurant.description }}</p>
+        <p class="card-text">住所: {{ restaurant.address }}</p>
+        <p class="card-text">電話: {{ restaurant.phone_number }}</p>
+
+        <!-- 一覧に戻るボタン -->
+        <a href="{% url 'restaurant-list-web' %}" class="btn btn-secondary mt-3">一覧に戻る</a>
+    </div>
+</div>
+{% endblock %}

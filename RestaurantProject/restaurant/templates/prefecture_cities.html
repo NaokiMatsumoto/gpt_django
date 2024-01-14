@@ -1,0 +1,34 @@
+<!-- prefecture_cities.html -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>都道府県の市一覧</title>
+</head>
+<body>
+    <h1>都道府県の市一覧</h1>
+    <ul>
+        {% for city in cities %}
+            <li>{{ city.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- ページネーション -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if cities.has_previous %}
+                <a href="?page={{ cities.previous_page_number }}">前へ</a>
+            {% endif %}
+            
+            <span class="current">
+                ページ {{ cities.number }} / {{ cities.paginator.num_pages }}.
+            </span>
+
+            {% if cities.has_next %}
+                <a href="?page={{ cities.next_page_number }}">次へ</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
